@@ -1,0 +1,102 @@
+@model User
+
+<h1 class="row col-12">Личный кабинет</h1>
+
+<div class="row col-12">
+    <div class="col-3">
+        <div class="row justify-content-center"><img height="200" src="/user.png" alt="user"></div>
+        <h4 class="row justify-content-center">@Model.SecondName @Model.FirstName</h4>
+        <h5 class="row justify-content-center">@Model.Email</h5>
+    </div>
+    
+    <div class="col-9">
+        <div class="row">
+            <div class="col-4">
+                <div class="card row border-primary mt-1 mb-1 mr-1">
+                    <div class="card-header text-primary">
+                        Мои компетенции
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        @foreach (var c in new[] {"abc", "cde"})
+                        {
+                            <li class="list-group-item bg-primary">
+                                <span class="badge badge-warning">@c</span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="card row border-primary  mt-1 mb-1 mr-1">
+                    <div class="card-header text-primary">
+                        Мои компетенции
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        @foreach (var c in new[] {"abc", "cde"})
+                        {
+                            <li class="list-group-item bg-primary">
+                                <span class="badge badge-warning">@c</span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="card row border-primary  mt-1 mb-1 mr-1">
+                    <div class="card-header text-primary">
+                        Мои компетенции
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        @foreach (var c in new[] {"abc", "cde"})
+                        {
+                            <li class="list-group-item bg-primary">
+                                <span class="badge badge-warning">@c</span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <h4 class="row">Мои курсы</h4>
+                
+        <div class="row">
+            @foreach (var course in new[] {1, 2, 3, 4, 5})
+            {
+                <div class="col-4">
+                    <div class="card row mt-1 mb-1 mr-1">
+                        <img class="card-img-top" src="/slack.png" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        
+        <h4 class="row">Пройденные курсы</h4>
+        
+        <div class="row">
+            @foreach (var course in new[] {1, 2, 3, 4, 5})
+            {
+                <div class="col-4">
+                    <div class="card row mt-1 mb-1 mr-1">
+                        <img class="card-img-top" src="/slack.png" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        
+    </div>
+</div>
+
+<div class="row col-12 justify-content-center m-1">
+    <a class="btn btn-outline-success align-content-center" asp-controller="Home" asp-action="Index">
+        Редактировать
+    </a>
+</div>

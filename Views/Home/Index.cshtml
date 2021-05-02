@@ -1,0 +1,105 @@
+﻿@model IndexViewModel
+
+<div class="row">
+	<form>
+		<div class="card p-1">
+			<header class="card-header">
+				<h6 class="title">Практика</h6>
+			</header>
+			<div class="form-check">
+				<input class="form-check-input" value="true" type="checkbox" name="practice" id="practiceTrue" @Model.Practice.GetCheckedString(true)>
+				<label class="form-check-label" for="practiceTrue">Да</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" value="false" type="checkbox" name="practice" id="practiceFalse" @Model.Practice.GetCheckedString(false)>
+				<label class="form-check-label" for="practiceFalse">Нет</label>
+			</div>
+				
+			<header class="card-header">
+				<h6 class="title">Сложность</h6>
+			</header>
+			<div class="form-check">
+				<input class="form-check-input" value="@Complexity.Beginner" type="checkbox" name="complexities" id="complexityBeginner" @Model.Complexities.GetCheckedString(Complexity.Beginner)>
+				<label class="form-check-label" for="complexityBeginner">Начинающий</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" value="@Complexity.Profile" type="checkbox" name="complexities" id="complexityStudent" @Model.Complexities.GetCheckedString(Complexity.Profile)>
+				<label class="form-check-label" for="complexityStudent">Профильный</label>
+			</div>
+				
+			<header class="card-header">
+				<h6 class="title">Формат</h6>
+			</header>
+			<div class="form-check">
+				<input class="form-check-input" value="@Format.Course" type="checkbox" name="formats" id="formatCourse" @Model.Formats.GetCheckedString(Format.Course)>
+				<label class="form-check-label" for="formatCourse">Курс</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" value="@Format.Lecture" type="checkbox" name="formats" id="formatLecture" @Model.Formats.GetCheckedString(Format.Lecture)>
+				<label class="form-check-label" for="formatLecture">Лекции</label>
+			</div>
+				
+			<header class="card-header">
+				<h6 class="title">Стоимость</h6>
+			</header>
+			<div class="form-check">
+				<input class="form-check-input" value="true" type="checkbox" name="free" id="freeTrue" @Model.Free.GetCheckedString(true)>
+				<label class="form-check-label" for="freeTrue">Бесплатный</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" value="false" type="checkbox" name="free" id="freeFalse" @Model.Free.GetCheckedString(false)>
+				<label class="form-check-label" for="freeFalse">Платный</label>
+			</div>
+				
+			<header class="card-header">
+				<h6 class="title">Длительность(ч.)</h6>
+			</header>
+			<div class="input-group mb-1">
+				<div class="input-group-prepend">
+					<span class="input-group-text">От</span>
+				</div>
+				<input type="number" class="form-control" name="min" value="@Model.MinDuration">
+			</div>
+			<div class="input-group mb-1">
+				<div class="input-group-prepend">
+					<span class="input-group-text">До</span>
+				</div>
+				<input type="number" class="form-control" name="max" value="@Model.MaxDuration">
+			</div>
+				
+			<button type="submit" class="btn btn-warning mt-1">Найти (@Model.Selected.Length)</button>
+		</div>
+	</form>
+
+	<div class="col">
+		<div class="row">
+			@{
+				foreach (var course in Model.Selected)
+				{
+					<div class="card border-primary col-12">
+						<div class="card-header">@course.Name</div>
+						<div class="card-body text-secondary">
+							<p class="card-text">
+								Практика: @course.Practice.ToCustomString()
+								<br />
+								Сложность: @course.Complexity.ToCustomString()
+								<br />
+								Формат: @course.Format.ToCustomString()
+								<br />
+								Стоимость: @course.Free.ToCostString()
+								<br />
+								Длительность: @course.Length часов
+								<br /> @course.Feature
+							</p>
+						</div>
+							
+						<a asp-controller="Home" asp-action="Index" class="btn btn-primary">
+							Подробнее
+						</a>
+					</div>
+				}
+			}
+		</div>
+	</div>
+
+</div>

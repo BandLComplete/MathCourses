@@ -1,0 +1,11 @@
+@model bool
+
+@if (Model)
+{
+    <h1>Вы успешно зарегестрированы</h1>
+    <a class="btn btn-primary stretched-link" asp-controller="Home" asp-action="Index">На главную</a>
+}
+else
+{
+    <h1>Ошибка</h1>
+}

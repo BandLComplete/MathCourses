@@ -1,0 +1,55 @@
+﻿@using InProcess.Controllers
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>InProcess</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css"/>
+</head>
+<body>
+<header>
+    <nav class="navbar row navbar-expand navbar-toggleable navbar-light bg-white border-bottom box-shadow mb-3">
+        <a class="navbar-brand col-3" asp-controller="Home" asp-action="Index">
+            <img height="40" src="/slack.png" alt="slack">
+        </a>
+            
+        <form class="form-inline col-6" asp-controller="Home" asp-action="Index">
+            <input class="form-control mr-sm-2" name="name" type="search" placeholder="Название курса">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Найти</button>
+        </form>
+            
+        <div class="float-right col-3">
+            @if (HomeController.CurrentUser == null)
+            {
+                <a asp-controller="Home" asp-action="Login">
+                    <img height="40" src="/login.png" alt="login">
+                </a>
+            }
+            else
+            {
+                <a asp-controller="Home" asp-action="Profile">
+                    <img height="40" src="/user.png" alt="user">
+                </a>
+            }
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+</div>
+
+<footer class="border-top footer text-muted">
+    <div class="container">
+        &copy; 2021 - InProcess - <a asp-area="" asp-controller="Home" asp-action="Index">Privacy</a>
+    </div>
+</footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

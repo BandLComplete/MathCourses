@@ -1,0 +1,32 @@
+@model bool
+
+<h1 class=" row col-12 justify-content-center">Вход</h1>
+
+@if (Model)
+{
+    <h2 class=" row col-12 justify-content-center">Неверный email или пароль</h2>
+}
+
+<form asp-controller="Home" asp-action="Login">
+    
+    <div class="form-inline row col-12 m-1">
+        <label class="control-label col-3">Email</label>
+        <input class="form-control col-6" name="email" type="search" placeholder="e-mail">
+    </div>
+    
+    <div class="form-inline row col-12 m-1">
+        <label class="control-label col-3">Пароль</label>
+        <input class="form-control col-6" name="password" type="search" placeholder="Пароль">
+    </div>
+
+    <div class="row col-12 justify-content-center m-1">
+        <button class="btn btn-outline-success col-3" type="submit">Войти</button>
+    </div>
+    
+    <div class="row col-12 justify-content-center m-1">
+        <a class="btn btn-outline-success col-3" asp-controller="Home" asp-action="RegistrationForm">
+            Зарегистрироваться
+        </a>
+    </div>
+</form>
+
