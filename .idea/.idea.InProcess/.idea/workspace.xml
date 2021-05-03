@@ -10,6 +10,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -20,7 +23,6 @@
         <option value="$PROJECT_DIR$/Views/Home/Profile.cshtml" />
         <option value="$PROJECT_DIR$/Format.cs" />
         <option value="$PROJECT_DIR$/Complexity.cs" />
-        <option value="$PROJECT_DIR$/Models/IndexViewModel.cs" />
         <option value="$PROJECT_DIR$/Startup.cs" />
         <option value="$PROJECT_DIR$/Models/User.cs" />
         <option value="$PROJECT_DIR$/Models/CourseDto.cs" />
@@ -30,10 +32,12 @@
         <option value="$PROJECT_DIR$/Controllers/HomeController.cs" />
         <option value="$PROJECT_DIR$/Views/Shared/_Layout.cshtml" />
         <option value="$PROJECT_DIR$/Data/ApplicationDbContext.cs" />
+        <option value="$PROJECT_DIR$/Models/IndexViewModel.cs" />
       </list>
     </option>
   </component>
   <component name="ProjectId" id="1rToVBhxONq2vcfVm5WKwkGUBPf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="autoscrollToSource" value="true" />
@@ -94,6 +98,7 @@
       <workItem from="1619189982582" duration="2932000" />
       <workItem from="1619862332975" duration="8083000" />
       <workItem from="1619948873339" duration="3260000" />
+      <workItem from="1620027502005" duration="967000" />
     </task>
     <servers />
   </component>
@@ -102,6 +107,17 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
@@ -110,22 +126,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="469" height="466" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1619178700350" />
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1619962384155">
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1620027942257">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1619962384155" />
-    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1619962384155">
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1620027942257" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1620027942257">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1619962384155" />
-    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1619962384155">
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1620027942257" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1620027942257">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1619962384155" />
-    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1619962384155">
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1620027942257" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1620027942257">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1619962384155" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1620027942257" />
     <state width="1877" height="375" key="GridCell.Tab.1.bottom" timestamp="1619882098347">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

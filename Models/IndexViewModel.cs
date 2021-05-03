@@ -10,8 +10,6 @@ namespace InProcess.Models
 		public readonly int MinDuration;
 		public readonly int MaxDuration;
 
-		private static readonly string Checked = "checked";
-
 		public IndexViewModel(Course[] selected,
 			bool[] practice,
 			Complexity[] complexities,
