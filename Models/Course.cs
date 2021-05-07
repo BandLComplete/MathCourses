@@ -47,7 +47,7 @@ namespace InProcess.Models
 			Feature = dto.Feature.Trim(Trimmers);
 			Content = dto.Content.Trim(Trimmers);
 			Depth = dto.Depth;
-			Competences = dto.Competences.Trim(Trimmers).SplitCompetences();
+			Competences = dto.Competences.Trim(Trimmers).ToLower().SplitArray();
 		}
 
 		private static readonly char[] Separators = {','};

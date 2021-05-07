@@ -1,8 +1,20 @@
-﻿@model IndexViewModel
+﻿@using InProcess.Controllers
+@model IndexViewModel
 
 <div class="row">
 	<form>
 		<div class="card p-1 m-1">
+            <header class="card-header">
+                <h6 class="title">Компетенции</h6>
+            </header>
+            @foreach (var competence in HomeController.Competences)
+            {
+                <div class="form-check">
+                    <input class="form-check-input" value="@competence" type="checkbox" name="competences" id="@competence" @Model.Competences.GetCheckedString(competence)>
+                    <label class="form-check-label" for="@competence">@competence</label>
+                </div>
+            }
+            
 			<header class="card-header">
 				<h6 class="title">Практика</h6>
 			</header>
@@ -79,25 +91,23 @@
 					<div class="card border-primary col-12 mb-1 p-1">
 						<div class="card-header">@course.Name</div>
 						<div class="card-body text-secondary">
-							<p class="card-text">
-								Практика: @course.Practice.ToCustomString()
-								<br />
-								Сложность: @course.Complexity.ToCustomString()
-								<br />
-								Формат: @course.Format.ToCustomString()
-								<br />
-								Стоимость: @course.Free.ToCostString()
-								<br />
+                            <p class="card-text">
+                                Практика: @course.Practice.ToCustomString()
+                                <br />
+                                Сложность: @course.Complexity.ToCustomString()
+                                <br />
+                                Формат: @course.Format.ToCustomString()
+                                <br />
+                                Стоимость: @course.Free.ToCostString()
+                                <br />
                                 Длительность: @course.Length часов
-                                <br/> Компетенции
-                                @foreach (var competence in course.Competences)
-                                {
-                                    <br/>
-                                    @competence
-                                }
-                                
-								<br /> @course.Feature
-							</p>
+                                <ul>
+                                    @foreach (var competence in course.Competences)
+                                    {
+                                        <li>@competence</li>
+                                    }
+                                </ul>
+                            </p>
 						</div>
 							
 						<a asp-controller="Home" asp-action="Course" asp-route-name="@course.Name" class="btn btn-primary">

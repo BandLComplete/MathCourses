@@ -33,12 +33,17 @@ namespace InProcess
 
 		public static bool ContainsOrEmpty<T>(this T[] source, T value) => source.Length == 0 || source.Contains(value);
 
-		public static string[] SplitCompetences(this string competences) => competences.Split(Separators);
+		public static bool ContainsOrEmpty<T>(this T[] source, IEnumerable<T> values) =>
+			source.Length == 0 || values.Any(source.Contains);
 
-		public static string CompetencesToString(this string[] competences) =>
-			competences == null || competences.Length == 0
+		public static string[] SplitArray(this string competences) => string.IsNullOrWhiteSpace(competences)
+			? Array.Empty<string>()
+            : competences.Trim().Split(Separators);
+
+		public static string EnumerableToString(this IEnumerable<string> competences) =>
+			competences == null || !competences.Any()
 				? ""
-				: competences.Aggregate((result, next) => result += $",{next}");
+				: competences.Aggregate((result, next) => result + $",{next}");
 		
 		private static readonly char[] Separators = {','};
 	}

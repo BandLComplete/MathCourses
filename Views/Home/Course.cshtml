@@ -1,3 +1,4 @@
+@using InProcess.Controllers
 @model Course
 
 <h3>@Model.Name</h3>
@@ -29,13 +30,29 @@
         <a href="@Model.Url" class="btn btn-primary m-1">
             Перейти на сайт курса
         </a>
+        @if (HomeController.CurrentUser != null)
+        {
+            if (HomeController.CurrentUser.Courses.Contains(Model.Name))
+            {
+                <a asp-controller="Home" asp-action="Course" asp-route-name="@Model.Name" asp-route-courseAction="Remove" class="btn btn-primary m-1">
+                    Удалить из моих курсов
+                </a>
+            }
+            else
+            {
+                <a asp-controller="Home" asp-action="Course" asp-route-name="@Model.Name" asp-route-courseAction="Add" class="btn btn-primary m-1">
+                    Добавить в мои курсы
+                </a>
+            }
+            
+        }
     </div>
     <div class="col-9">
-        <div class="row p-1">
+        <div class="row m-1">
             <h5>Содержание</h5>
             @Model.Content
         </div>
-        <div class="row p-1">
+        <div class="row m-1">
             <h5>Особенности</h5>
             @Model.Feature
         </div>

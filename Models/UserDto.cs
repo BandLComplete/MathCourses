@@ -11,5 +11,6 @@ namespace InProcess.Models
 		public string SecondName { get; set; }
 		public string CurrentCompetences { get; set; }
 		public string DesiredCompetences { get; set; }
+		public string Courses { get; set; }
 	}
 }

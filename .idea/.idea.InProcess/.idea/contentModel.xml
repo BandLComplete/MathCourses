@@ -11,6 +11,7 @@
       <e p="Controllers" t="Include">
         <e p="HomeController.cs" t="Include" />
       </e>
+      <e p="CourseAction.cs" t="Include" />
       <e p="Data" t="Include">
         <e p="ApplicationDbContext.cs" t="Include" />
       </e>
@@ -22,7 +23,6 @@
         <e p="Course.cs" t="Include" />
         <e p="CourseDto.cs" t="Include" />
         <e p="IndexViewModel.cs" t="Include" />
-        <e p="RegistrationModel.cs" t="Include" />
         <e p="User.cs" t="Include" />
         <e p="UserDto.cs" t="Include" />
       </e>
@@ -48,6 +48,7 @@
           <e p="Index.cshtml" t="Include" />
           <e p="Login.cshtml" t="Include" />
           <e p="Profile.cshtml" t="Include" />
+          <e p="ProfileEdit.cshtml" t="Include" />
           <e p="Registration.cshtml" t="Include" />
           <e p="RegistrationForm.cshtml" t="Include" />
         </e>
