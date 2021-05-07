@@ -1,5 +1,3 @@
-using System;
-
 namespace InProcess.Models
 {
 	public class Course
@@ -14,6 +12,7 @@ namespace InProcess.Models
 		public readonly string Feature;
 		public readonly string Content;
 		public readonly string Depth;
+		public readonly string[] Competences;
 
 		public Course(string name,
 			string url,
@@ -22,7 +21,7 @@ namespace InProcess.Models
 			bool practice,
 			bool free,
 			int length,
-			string content,string feature,  string depth = "Материал представлен понятно и подробно")
+			string content,string feature,  string depth)
 		{
 			Name = name;
 			Url = url;
@@ -38,16 +37,20 @@ namespace InProcess.Models
 
 		public Course(CourseDto dto)
 		{
-			Name = dto.Name;
+			Name = dto.Name.Trim(Trimmers);
 			Url = dto.Url;
 			Format = (Format) dto.Format;
 			Complexity = (Complexity) dto.Complexity;
 			Practice = dto.Practice;
 			Free = dto.Free;
 			Length = dto.Length;
-			Feature = dto.Feature;
-			Content = dto.Content;
+			Feature = dto.Feature.Trim(Trimmers);
+			Content = dto.Content.Trim(Trimmers);
 			Depth = dto.Depth;
+			Competences = dto.Competences.Trim(Trimmers).SplitCompetences();
 		}
+
+		private static readonly char[] Separators = {','};
+		private static readonly char[] Trimmers = {'\"'};
 	}
 }

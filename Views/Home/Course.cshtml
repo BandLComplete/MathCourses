@@ -1,0 +1,44 @@
+@model Course
+
+<h3>@Model.Name</h3>
+
+<div class="row">
+    <div class="col-3">
+        <div class="row p-1">
+            <img src="/item.png" alt="*" class="img-fluid"/> Практика: @Model.Practice.ToCustomString()
+        </div>
+        <div class="row p-1">
+            <img src="/item.png" alt="*" class="img-fluid"/> Сложность: @Model.Complexity.ToCustomString()
+        </div>
+        <div class="row p-1">
+            <img src="/item.png" alt="*" class="img-fluid"/> Формат: @Model.Format.ToCustomString()
+        </div>
+        <div class="row p-1">
+            <img src="/item.png" alt="*" class="img-fluid"/> Стоимость: @Model.Free.ToCostString()
+        </div>
+        <div class="row p-1">
+            <img src="/item.png" alt="*" class="img-fluid"/> Длительность: @Model.Length часов
+        </div>
+        <div class="row pt-1 pl-1 pr-1">
+            <img src="/item.png" alt="*" class="img-fluid"/> Глубина:
+        </div>
+        <div class="row pb-1 pl-1 pr-1">
+            @Model.Depth
+        </div>
+		
+        <a href="@Model.Url" class="btn btn-primary m-1">
+            Перейти на сайт курса
+        </a>
+    </div>
+    <div class="col-9">
+        <div class="row p-1">
+            <h5>Содержание</h5>
+            @Model.Content
+        </div>
+        <div class="row p-1">
+            <h5>Особенности</h5>
+            @Model.Feature
+        </div>
+		
+    </div>
+</div>

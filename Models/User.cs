@@ -1,14 +1,20 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace InProcess.Models
 {
 	public class User
 	{
-		[Key]
-		public string Email { get; set; }
-		public string Password { get; set;  }
-		public string FirstName { get; set; }
-		public string SecondName { get; set; }
+		public readonly string Email;
+		public readonly string FirstName;
+		public readonly string SecondName;
+		public readonly string[] CurrentCompetences;
+		public readonly string[] DesiredCompetences;
 		
+		public User(UserDto dto)
+		{
+			Email = dto.Email;
+			FirstName = dto.FirstName;
+			SecondName = dto.SecondName;
+			CurrentCompetences = dto.CurrentCompetences.SplitCompetences();
+			DesiredCompetences = dto.DesiredCompetences.SplitCompetences();
+		}
 	}
 }

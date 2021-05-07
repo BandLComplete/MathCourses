@@ -38,6 +38,13 @@ namespace InProcess.Controllers
 			}
 			return View(new IndexViewModel(courses, practice, complexities, formats, free, min, max));
 		}
+		
+		public IActionResult Course(string name)
+		{
+			var course = _courses.FirstOrDefault(c => c.Name == name);
+			if (course == null) return RedirectToRoute(new {controller = "Home", action = "Login"});
+			return View(course);
+		}
 
 		public IActionResult Profile()
 		{
@@ -51,7 +58,7 @@ namespace InProcess.Controllers
 			var dbUser = _dbContext.Users.Find(email);
 			if (dbUser != null && dbUser.Password == password)
 			{
-				CurrentUser = dbUser;
+				CurrentUser = new User(dbUser);
 				return RedirectToRoute(new { controller="Home", action="Index"});
 			}
 			return View();
@@ -62,11 +69,26 @@ namespace InProcess.Controllers
 			return View(new RegistrationModel());
 		}
 		
-		public IActionResult Registration(string firstName, string secondName, string email, string password, string[] current, string[] desired, string[] themes)
+		public IActionResult Registration(string firstName, string secondName, string email, string password, string[] current, string[] desired)
 		{
-			CurrentUser = new User {Email = email, Password = password, FirstName = firstName, SecondName = secondName};
-			_dbContext.Users.Add(CurrentUser);
-			_dbContext.SaveChanges();
+			var dto = new UserDto
+			{
+				Email = email, Password = password, FirstName = firstName, SecondName = secondName, 
+				CurrentCompetences = current.CompetencesToString(),
+				DesiredCompetences = desired.CompetencesToString()
+			};
+			_dbContext.Users.Add(dto);
+			try
+			{
+				_dbContext.SaveChanges();
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.Message);
+				return View(false);
+			}
+			
+			CurrentUser = new User(dto);
 			return View(true);
 		}
 	}

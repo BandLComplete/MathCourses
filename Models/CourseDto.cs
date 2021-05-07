@@ -15,5 +15,6 @@ namespace InProcess.Models
 		public  string Feature{ get; set; }
 		public  string Content{ get; set; }
 		public  string Depth{ get; set; }
+		public  string Competences{ get; set; }
 	}
 }

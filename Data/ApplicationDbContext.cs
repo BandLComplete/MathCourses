@@ -5,7 +5,7 @@ namespace InProcess.Data
 {
 	public class ApplicationDbContext : DbContext
 	{
-		public DbSet<User> Users { get; set; }
+		public DbSet<UserDto> Users { get; set; }
 		public DbSet<CourseDto> Courses { get; set; }
         
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
