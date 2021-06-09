@@ -34,6 +34,6 @@ jobs:
       with:
         app-name: MathCourses
         slot-name: Production
-        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A40C56245D7141D793F6BD9BA262E633 }}
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9AD67AB2EF49468A94A391683CB4C3F3 }}
         package: ${{env.DOTNET_ROOT}}/myapp
 
