@@ -50,7 +50,6 @@ namespace InProcess.Models
 			Competences = dto.Competences.Trim(Trimmers).ToLower().SplitArray();
 		}
 
-		private static readonly char[] Separators = {','};
-		private static readonly char[] Trimmers = {'\"'};
+		private static readonly char[] Trimmers = {'\"', '\n', '\r'};
 	}
 }

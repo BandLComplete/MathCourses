@@ -1,3 +1,4 @@
+@using InProcess.Controllers
 @model User
 
 <h1 class="row col-12">Личный кабинет</h1>
@@ -16,11 +17,11 @@
                     <div class="card-header text-primary">
                         Мои компетенции
                     </div>
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush" style="text-align:center;">
                         @foreach (var c in Model.CurrentCompetences)
                         {
                             <li class="list-group-item bg-primary">
-                                <span class="badge badge-warning">@c</span>
+                                <span class="badge badge-warning" style="white-space: normal">@c</span>
                             </li>
                         }
                     </ul>
@@ -32,11 +33,11 @@
                     <div class="card-header text-primary">
                         Желаемые компетенции
                     </div>
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush" style="text-align:center;">
                         @foreach (var c in Model.DesiredCompetences)
                         {
                             <li class="list-group-item bg-primary">
-                                <span class="badge badge-warning">@c</span>
+                                <span class="badge badge-warning" style="white-space: normal">@c</span>
                             </li>
                         }
                     </ul>
@@ -44,9 +45,12 @@
             </div>
         </div>
         
-        <a class="row btn btn-outline-success align-content-center" asp-controller="Home" asp-action="ProfileEdit">
-            Редактировать
-        </a>
+        <div class="row col-12 justify-content-center">
+            <a class="row btn btn-outline-primary" asp-controller="Home" asp-action="ProfileEdit">
+                Редактировать
+            </a>
+        </div>
+        
         
         <h4 class="row">Мои курсы</h4>
                 
@@ -54,12 +58,23 @@
             @foreach (var course in Model.Courses)
             {
                 <div class="col-4">
-                    <div class="card row mt-1 mb-1 mr-1">
-                        <div class="card-body">
-                            <a class="card-text" asp-controller="Home" asp-action="Course" asp-route-name="@course">
-                                @course
-                            </a>
+                    <div class="card row border-primary mt-1 mb-1 mr-1">
+                        <div class="card-header text-primary">
+                            @course
                         </div>
+                        
+                        <ul class="list-group list-group-flush" style="text-align:center;">
+                            @foreach (var competence in HomeController.Courses[course].Competences)
+                            {
+                                <li class="list-group-item bg-primary">
+                                    <span class="badge badge-warning" style="white-space: normal">@competence</span>
+                                </li>
+                            }
+                        </ul>
+
+                        <a class="btn btn-warning" asp-controller="Home" asp-action="Course" asp-route-name="@course">
+                            Подробнее
+                        </a>
                     </div>
                 </div>
             }

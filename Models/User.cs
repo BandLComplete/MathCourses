@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Identity;
 
 namespace InProcess.Models
 {
@@ -24,13 +25,14 @@ namespace InProcess.Models
 			Courses = dto.Courses.SplitArray().ToHashSet();
 		}
 
-		public UserDto ToDto()
+		public UserDto ToDto(string firstName = null, string secondName = null, string password = null, string[] current = null, string[] desired = null)
 		{
 			return new UserDto
 			{
-				Email = Email, Password = Password, FirstName = FirstName, SecondName = SecondName,
-				CurrentCompetences = CurrentCompetences.EnumerableToString(),
-				DesiredCompetences = DesiredCompetences.EnumerableToString(),
+				Email = Email, Password = password ?? Password, FirstName = firstName ?? FirstName,
+				SecondName = secondName ?? SecondName,
+				CurrentCompetences = (current ?? CurrentCompetences).EnumerableToString(),
+				DesiredCompetences = (desired ?? DesiredCompetences).EnumerableToString(),
 				Courses = Courses.EnumerableToString()
 			};
 		}

@@ -38,13 +38,13 @@ namespace InProcess
 
 		public static string[] SplitArray(this string competences) => string.IsNullOrWhiteSpace(competences)
 			? Array.Empty<string>()
-            : competences.Trim().Split(Separators);
+            : competences.Trim().Split(Separators, StringSplitOptions.RemoveEmptyEntries);
 
 		public static string EnumerableToString(this IEnumerable<string> competences) =>
 			competences == null || !competences.Any()
 				? ""
 				: competences.Aggregate((result, next) => result + $",{next}");
 		
-		private static readonly char[] Separators = {','};
+		private static readonly char[] Separators = {',', '.'};
 	}
 }

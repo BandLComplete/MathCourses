@@ -10,6 +10,7 @@ namespace InProcess.Controllers
 	public class HomeController : Controller
 	{
 		public static User CurrentUser { get; private set; }
+		public static Dictionary<string, Course> Courses;
 		private readonly ApplicationDbContext _dbContext;
 		private readonly Course[] _courses;
 		public static readonly HashSet<string> Competences = new HashSet<string>();
@@ -18,6 +19,7 @@ namespace InProcess.Controllers
 		{
 			_dbContext = dbContext;
 			_courses = dbContext.Courses.Select(dto => new Course(dto)).ToArray();
+			Courses = _courses.ToDictionary(c => c.Name, c => c);
 			foreach (var course in _courses)
 			{
 				foreach (var competence in course.Competences)
@@ -46,6 +48,8 @@ namespace InProcess.Controllers
 					Where(c => c.Name.StartsWith(name, StringComparison.OrdinalIgnoreCase)).
 					ToArray();
 			}
+
+			if (max == 0) max = courses.Max(c => c.Length);
 			return View(new IndexViewModel(courses, competences, practice, complexities, formats, free, min, max));
 		}
 		
@@ -101,7 +105,8 @@ namespace InProcess.Controllers
 			{
 				Email = email, Password = password, FirstName = firstName, SecondName = secondName, 
 				CurrentCompetences = current.EnumerableToString(),
-				DesiredCompetences = desired.EnumerableToString()
+				DesiredCompetences = desired.EnumerableToString(),
+				Courses = string.Empty
 			};
 			_dbContext.Users.Add(userDto);
 			try
@@ -126,12 +131,7 @@ namespace InProcess.Controllers
 				return View(CurrentUser);
 			}
 
-			var dto = new UserDto
-			{
-				Email = CurrentUser.Email, Password = password, FirstName = firstName, SecondName = secondName, 
-				CurrentCompetences = current.EnumerableToString(),
-				DesiredCompetences = desired.EnumerableToString()
-			};
+			var dto = CurrentUser.ToDto(firstName, secondName, password, current, desired);
 			_dbContext.Users.Update(dto);
 			try
 			{
