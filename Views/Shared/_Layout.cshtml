@@ -10,16 +10,16 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand navbar-toggleable navbar-light bg-white border-bottom box-shadow mb-3">
+    <nav class="navbar navbar-expand navbar-toggleable border-bottom box-shadow mb-3 border-primary">
         <a class="navbar-brand col-3" asp-controller="Home" asp-action="Index">
             <img height="40" src="/slack.png" alt="slack">
         </a>
-            
+
         <form class="form-inline col-6" asp-controller="Home" asp-action="Index">
             <input class="form-control mr-sm-2" name="name" type="search" placeholder="Название курса">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Найти</button>
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Найти</button>
         </form>
-            
+
         <div class="float-right col-3">
             @if (HomeController.CurrentUser == null)
             {

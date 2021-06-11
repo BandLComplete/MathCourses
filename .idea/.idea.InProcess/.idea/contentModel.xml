@@ -58,10 +58,12 @@
         </e>
       </e>
       <e p="wwwroot" t="Include">
+        <e p="course_bg.jpg" t="Include" />
         <e p="css" t="Include">
           <e p="site.css" t="Include" />
         </e>
         <e p="favicon.ico" t="Include" />
+        <e p="header_bg.jpg" t="Include" />
         <e p="item.png" t="Include" />
         <e p="js" t="Include">
           <e p="site.js" t="Include" />

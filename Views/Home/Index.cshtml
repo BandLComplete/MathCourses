@@ -3,11 +3,9 @@
 
 <div class="row col-12">
 	<form class="col-3">
-		<div class="card p-1">
-            <header class="card-header">
-                <h6 class="title">Компетенции</h6>
-            </header>
-            <div class="overflow-auto" style="max-height: 250px;">
+		<div class="card">
+            <h6 class="card-header border-primary">Компетенции</h6>
+            <div class="overflow-auto ml-1" style="max-height: 250px;">
                 @foreach (var competence in HomeController.Competences)
                 {
                     <div class="form-check">
@@ -17,57 +15,47 @@
                 }
             </div>
             
-			<header class="card-header">
-				<h6 class="title">Практика</h6>
-			</header>
-			<div class="form-check">
+			<h6 class="card-header border-primary">Практика</h6>
+			<div class="form-check ml-1">
 				<input class="form-check-input" value="true" type="checkbox" name="practice" id="practiceTrue" @Model.Practice.GetCheckedString(true)>
 				<label class="form-check-label" for="practiceTrue">Да</label>
 			</div>
-			<div class="form-check">
+			<div class="form-check ml-1">
 				<input class="form-check-input" value="false" type="checkbox" name="practice" id="practiceFalse" @Model.Practice.GetCheckedString(false)>
 				<label class="form-check-label" for="practiceFalse">Нет</label>
 			</div>
 				
-			<header class="card-header">
-				<h6 class="title">Сложность</h6>
-			</header>
-			<div class="form-check">
+			<h6 class="card-header border-primary">Сложность</h6>
+			<div class="form-check ml-1">
 				<input class="form-check-input" value="@Complexity.Beginner" type="checkbox" name="complexities" id="complexityBeginner" @Model.Complexities.GetCheckedString(Complexity.Beginner)>
 				<label class="form-check-label" for="complexityBeginner">Начинающий</label>
 			</div>
-			<div class="form-check">
+			<div class="form-check ml-1">
 				<input class="form-check-input" value="@Complexity.Profile" type="checkbox" name="complexities" id="complexityStudent" @Model.Complexities.GetCheckedString(Complexity.Profile)>
 				<label class="form-check-label" for="complexityStudent">Профильный</label>
 			</div>
 				
-			<header class="card-header">
-				<h6 class="title">Формат</h6>
-			</header>
-			<div class="form-check">
+			<h6 class="card-header border-primary">Формат</h6>
+			<div class="form-check ml-1">
 				<input class="form-check-input" value="@Format.Course" type="checkbox" name="formats" id="formatCourse" @Model.Formats.GetCheckedString(Format.Course)>
 				<label class="form-check-label" for="formatCourse">Курс</label>
 			</div>
-			<div class="form-check">
+			<div class="form-check ml-1">
 				<input class="form-check-input" value="@Format.Lecture" type="checkbox" name="formats" id="formatLecture" @Model.Formats.GetCheckedString(Format.Lecture)>
 				<label class="form-check-label" for="formatLecture">Лекции</label>
 			</div>
 				
-			<header class="card-header">
-				<h6 class="title">Стоимость</h6>
-			</header>
-			<div class="form-check">
+			<h6 class="card-header border-primary">Стоимость</h6>
+			<div class="form-check ml-1">
 				<input class="form-check-input" value="true" type="checkbox" name="free" id="freeTrue" @Model.Free.GetCheckedString(true)>
 				<label class="form-check-label" for="freeTrue">Бесплатный</label>
 			</div>
-			<div class="form-check">
+			<div class="form-check ml-1">
 				<input class="form-check-input" value="false" type="checkbox" name="free" id="freeFalse" @Model.Free.GetCheckedString(false)>
 				<label class="form-check-label" for="freeFalse">Платный</label>
 			</div>
 				
-			<header class="card-header">
-				<h6 class="title">Длительность(ч.)</h6>
-			</header>
+			<h6 class="card-header border-primary">Длительность(ч.)</h6>
 			<div class="input-group mb-1">
 				<div class="input-group-prepend">
 					<span class="input-group-text">От</span>
