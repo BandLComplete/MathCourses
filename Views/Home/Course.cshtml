@@ -8,13 +8,48 @@
         <p class="row">@Model.Feature</p>
         <h3 class="row">Материалы курса</h3>
         <p class="row">@Model.Content</p>
+        
+        <h3 class="row">Рекомендуемые курсы</h3>
+        <div class="row">
+            @foreach (var course in HomeController.Courses.Values.Skip(45).Take(3))
+            {
+                <div class="col-4 pl-0">
+                    <div class="card">
+                        <div class="card-header border-bottom border-primary p-1">
+                            @course.Name
+                        </div>
+                        <div class="card-body p-1">
+                            <div class="row ml-0 mr-0">
+                                <div class="col pl-0 pr-0 mr-1">Компетенции: </div>
+                                @foreach (var c in course.Competences)
+                                {
+                                    <div class="col mr-1 mt-1 badge badge-warning" style="white-space: normal">@c</div>
+                                }
+                            </div>
+                                            
+                            Формат: @course.Format.ToCustomString()<br/>
+                            Для кого: @course.Complexity.ToCustomString()<br/>
+                            Длительность: @course.Length часов<br/>
+                            Практика: @course.Practice.ToCustomString()<br/>
+                            Стоимость: @course.Free.ToCostString()<br/>
+                            
+                            <a asp-controller="Home" asp-action="Course" asp-route-name="@course.Name" class="btn btn-warning" style="width: 100%;">
+                                Подробнее
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        
+        </div>
+        
     </div>
     
     <div class="col-4 pl-0 pr-0">
         <div class="card pl-0 pr-0">
             <img src="/course_bg.jpg" class="card-header border-bottom border-primary p-0" style="height: 149px" alt="course image">
-            <div class="card-body">
-                <div class="row pl-3">
+            <div class="card-body p-1">
+                <div class="row pl-3 mr-0">
                     <div class="col pl-0">Компетенции: </div>
                     @foreach (var c in Model.Competences)
                     {
@@ -28,7 +63,7 @@
                 Практика: @Model.Practice.ToCustomString()<br/>
                 Стоимость: @Model.Free.ToCostString()<br/>
 
-                <a href="@Model.Url" class="btn btn-warning">
+                <a href="@Model.Url" class="btn btn-warning" style="width: 100%;">
                     Перейти на сайт курса
                 </a>
 
@@ -36,77 +71,18 @@
                 {
                     if (HomeController.CurrentUser.Courses.Contains(Model.Name))
                     {
-                        <a asp-controller="Home" asp-action="Course" asp-route-name="@Model.Name" asp-route-courseAction="Remove" class="btn btn-warning mt-1">
+                        <a asp-controller="Home" asp-action="Course" asp-route-name="@Model.Name" asp-route-courseAction="Remove" class="btn btn-warning mt-1" style="width: 100%;">
                             Удалить из моих курсов
                         </a>
                     }
                     else
                     {
-                        <a asp-controller="Home" asp-action="Course" asp-route-name="@Model.Name" asp-route-courseAction="Add" class="btn btn-warning mt-1">
+                        <a asp-controller="Home" asp-action="Course" asp-route-name="@Model.Name" asp-route-courseAction="Add" class="btn btn-warning mt-1" style="width: 100%;">
                             Добавить в мои курсы
                         </a>
                     }
                 }
             </div>
         </div>
-    </div>
-</div>
-
-
-
-<div class="row">
-    <div class="col-3">
-        <div class="row p-1">
-            <img src="/item.png" alt="*" class="img-fluid"/> Практика: @Model.Practice.ToCustomString()
-        </div>
-        <div class="row p-1">
-            <img src="/item.png" alt="*" class="img-fluid"/> Сложность: @Model.Complexity.ToCustomString()
-        </div>
-        <div class="row p-1">
-            <img src="/item.png" alt="*" class="img-fluid"/> Формат: @Model.Format.ToCustomString()
-        </div>
-        <div class="row p-1">
-            <img src="/item.png" alt="*" class="img-fluid"/> Стоимость: @Model.Free.ToCostString()
-        </div>
-        <div class="row p-1">
-            <img src="/item.png" alt="*" class="img-fluid"/> Длительность: @Model.Length часов
-        </div>
-        <div class="row pt-1 pl-1 pr-1">
-            <img src="/item.png" alt="*" class="img-fluid"/> Глубина:
-        </div>
-        <div class="row pb-1 pl-1 pr-1">
-            @Model.Depth
-        </div>
-
-        <a href="@Model.Url" class="btn btn-primary m-1">
-            Перейти на сайт курса
-        </a>
-        @if (HomeController.CurrentUser != null)
-        {
-            if (HomeController.CurrentUser.Courses.Contains(Model.Name))
-            {
-                <a asp-controller="Home" asp-action="Course" asp-route-name="@Model.Name" asp-route-courseAction="Remove" class="btn btn-primary m-1">
-                    Удалить из моих курсов
-                </a>
-            }
-            else
-            {
-                <a asp-controller="Home" asp-action="Course" asp-route-name="@Model.Name" asp-route-courseAction="Add" class="btn btn-primary m-1">
-                    Добавить в мои курсы
-                </a>
-            }
-
-        }
-    </div>
-    <div class="col-9">
-        <div class="row m-1">
-            <h5>Содержание</h5>
-            @Model.Content
-        </div>
-        <div class="row m-1">
-            <h5>Особенности</h5>
-            @Model.Feature
-        </div>
-
     </div>
 </div>

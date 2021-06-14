@@ -62,6 +62,7 @@
         <e p="css" t="Include">
           <e p="site.css" t="Include" />
         </e>
+        <e p="easy.png" t="Include" />
         <e p="favicon.ico" t="Include" />
         <e p="header_bg.jpg" t="Include" />
         <e p="item.png" t="Include" />
@@ -122,7 +123,6 @@
           </e>
         </e>
         <e p="login.png" t="Include" />
-        <e p="slack.png" t="Include" />
         <e p="user.png" t="Include" />
       </e>
     </e>

@@ -1,112 +1,180 @@
 ﻿@using InProcess.Controllers
 @model IndexViewModel
 
-<div class="row col-12">
-	<form class="col-3">
-		<div class="card">
-            <h6 class="card-header border-primary">Компетенции</h6>
-            <div class="overflow-auto ml-1" style="max-height: 250px;">
-                @foreach (var competence in HomeController.Competences)
+@if (HomeController.CurrentUser != null)
+{
+    <div class="row col-12 pb-1">
+        <div class="col-12">
+            <h5>Рекомендуемые курсы</h5>
+            <div class="row">
+                @foreach (var course in Model.Selected.Skip(40).Take(3))
                 {
-                    <div class="form-check">
-                        <input class="form-check-input" value="@competence" type="checkbox" name="competences" id="@competence" @Model.Competences.GetCheckedString(competence)>
-                        <label class="form-check-label" for="@competence">@competence</label>
+                    <div class="col-4 pr-0">
+                        <div class="card">
+                            <div class="card-header border-bottom border-primary p-1">
+                                @course.Name
+                            </div>
+                            <div class="card-body p-1">
+                                <div class="row ml-0 mr-0">
+                                    <div class="col pl-0 pr-0 mr-1">Компетенции: </div>
+                                    @foreach (var c in course.Competences)
+                                    {
+                                        <div class="col mr-1 mt-1 badge badge-warning" style="white-space: normal">@c</div>
+                                    }
+                                </div>
+                                    
+                                Формат: @course.Format.ToCustomString()<br/>
+                                Для кого: @course.Complexity.ToCustomString()<br/>
+                                Длительность: @course.Length часов<br/>
+                                Практика: @course.Practice.ToCustomString()<br/>
+                                Стоимость: @course.Free.ToCostString()<br/>
+                    
+                                <a asp-controller="Home" asp-action="Course" asp-route-name="@course.Name" class="btn btn-warning" style="width: 100%;">
+                                    Подробнее
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 }
-            </div>
-            
-			<h6 class="card-header border-primary">Практика</h6>
-			<div class="form-check ml-1">
-				<input class="form-check-input" value="true" type="checkbox" name="practice" id="practiceTrue" @Model.Practice.GetCheckedString(true)>
-				<label class="form-check-label" for="practiceTrue">Да</label>
-			</div>
-			<div class="form-check ml-1">
-				<input class="form-check-input" value="false" type="checkbox" name="practice" id="practiceFalse" @Model.Practice.GetCheckedString(false)>
-				<label class="form-check-label" for="practiceFalse">Нет</label>
-			</div>
-				
-			<h6 class="card-header border-primary">Сложность</h6>
-			<div class="form-check ml-1">
-				<input class="form-check-input" value="@Complexity.Beginner" type="checkbox" name="complexities" id="complexityBeginner" @Model.Complexities.GetCheckedString(Complexity.Beginner)>
-				<label class="form-check-label" for="complexityBeginner">Начинающий</label>
-			</div>
-			<div class="form-check ml-1">
-				<input class="form-check-input" value="@Complexity.Profile" type="checkbox" name="complexities" id="complexityStudent" @Model.Complexities.GetCheckedString(Complexity.Profile)>
-				<label class="form-check-label" for="complexityStudent">Профильный</label>
-			</div>
-				
-			<h6 class="card-header border-primary">Формат</h6>
-			<div class="form-check ml-1">
-				<input class="form-check-input" value="@Format.Course" type="checkbox" name="formats" id="formatCourse" @Model.Formats.GetCheckedString(Format.Course)>
-				<label class="form-check-label" for="formatCourse">Курс</label>
-			</div>
-			<div class="form-check ml-1">
-				<input class="form-check-input" value="@Format.Lecture" type="checkbox" name="formats" id="formatLecture" @Model.Formats.GetCheckedString(Format.Lecture)>
-				<label class="form-check-label" for="formatLecture">Лекции</label>
-			</div>
-				
-			<h6 class="card-header border-primary">Стоимость</h6>
-			<div class="form-check ml-1">
-				<input class="form-check-input" value="true" type="checkbox" name="free" id="freeTrue" @Model.Free.GetCheckedString(true)>
-				<label class="form-check-label" for="freeTrue">Бесплатный</label>
-			</div>
-			<div class="form-check ml-1">
-				<input class="form-check-input" value="false" type="checkbox" name="free" id="freeFalse" @Model.Free.GetCheckedString(false)>
-				<label class="form-check-label" for="freeFalse">Платный</label>
-			</div>
-				
-			<h6 class="card-header border-primary">Длительность(ч.)</h6>
-			<div class="input-group mb-1">
-				<div class="input-group-prepend">
-					<span class="input-group-text">От</span>
-				</div>
-				<input type="number" class="form-control" name="min" value="@Model.MinDuration">
-			</div>
-			<div class="input-group mb-1">
-				<div class="input-group-prepend">
-					<span class="input-group-text">До</span>
-				</div>
-				<input type="number" class="form-control" name="max" value="@Model.MaxDuration">
-			</div>
-				
-			<button type="submit" class="btn btn-warning mt-1">Найти (@Model.Selected.Length)</button>
-		</div>
-	</form>
 
-	<div class="col-9">
-		<div class="row">
-			@{
-				foreach (var course in Model.Selected)
-				{
-					<div class="card border-primary col-12 mb-1 p-1">
-						<div class="card-header">@course.Name</div>
-						<div class="card-body text-secondary">
-                            <p class="card-text">
-                                Практика: @course.Practice.ToCustomString()
-                                <br />
-                                Сложность: @course.Complexity.ToCustomString()
-                                <br />
-                                Формат: @course.Format.ToCustomString()
-                                <br />
-                                Стоимость: @course.Free.ToCostString()
-                                <br />
-                                Длительность: @course.Length часов
-                                <ul>
-                                    @foreach (var competence in course.Competences)
+            </div>
+        
+            <h5>Популярные курсы</h5>
+            <div class="row">
+                @foreach (var course in Model.Selected.Skip(15).Take(3))
+                {
+                    <div class="col-4 pr-0">
+                        <div class="card">
+                            <div class="card-header border-bottom border-primary p-1">
+                                @course.Name
+                            </div>
+                            <div class="card-body p-1">
+                                <div class="row ml-0 mr-0">
+                                    <div class="col pl-0 pr-0 mr-1">Компетенции: </div>
+                                    @foreach (var c in course.Competences)
                                     {
-                                        <li>@competence</li>
+                                        <div class="col mr-1 mt-1 badge badge-warning" style="white-space: normal">@c</div>
                                     }
-                                </ul>
-                            </p>
-						</div>
-							
-						<a asp-controller="Home" asp-action="Course" asp-route-name="@course.Name" class="btn btn-primary">
-							Подробнее
-						</a>
-					</div>
-				}
-			}
-		</div>
-	</div>
+                                </div>
+                                            
+                                Формат: @course.Format.ToCustomString()<br/>
+                                Для кого: @course.Complexity.ToCustomString()<br/>
+                                Длительность: @course.Length часов<br/>
+                                Практика: @course.Practice.ToCustomString()<br/>
+                                Стоимость: @course.Free.ToCostString()<br/>
+                            
+                                <a asp-controller="Home" asp-action="Course" asp-route-name="@course.Name" class="btn btn-warning" style="width: 100%;">
+                                    Подробнее
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+        
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row col-12">
+    <form class="col-6 pr-0">
+        <div class="card">
+            <div class="row">
+                <div class="col-6 pr-0">
+                    <div id="filter">
+                        <h6 class="card-header border-primary">Практика</h6>
+                        <div class="form-check ml-1">
+                            <input class="form-check-input" value="true" type="checkbox" name="practice" id="practiceTrue" @Model.Practice.GetCheckedString(true)>
+                            <label class="form-check-label" for="practiceTrue">Да</label>
+                        </div>
+                        <div class="form-check ml-1">
+                            <input class="form-check-input" value="false" type="checkbox" name="practice" id="practiceFalse" @Model.Practice.GetCheckedString(false)>
+                            <label class="form-check-label" for="practiceFalse">Нет</label>
+                        </div>
+
+                        <h6 class="card-header border-primary">Сложность</h6>
+                        <div class="form-check ml-1">
+                            <input class="form-check-input" value="@Complexity.Beginner" type="checkbox" name="complexities" id="complexityBeginner" @Model.Complexities.GetCheckedString(Complexity.Beginner)>
+                            <label class="form-check-label" for="complexityBeginner">Начинающий</label>
+                        </div>
+                        <div class="form-check ml-1">
+                            <input class="form-check-input" value="@Complexity.Profile" type="checkbox" name="complexities" id="complexityStudent" @Model.Complexities.GetCheckedString(Complexity.Profile)>
+                            <label class="form-check-label" for="complexityStudent">Профильный</label>
+                        </div>
+
+                        <h6 class="card-header border-primary">Формат</h6>
+                        <div class="form-check ml-1">
+                            <input class="form-check-input" value="@Format.Course" type="checkbox" name="formats" id="formatCourse" @Model.Formats.GetCheckedString(Format.Course)>
+                            <label class="form-check-label" for="formatCourse">Курс</label>
+                        </div>
+                        <div class="form-check ml-1">
+                            <input class="form-check-input" value="@Format.Lecture" type="checkbox" name="formats" id="formatLecture" @Model.Formats.GetCheckedString(Format.Lecture)>
+                            <label class="form-check-label" for="formatLecture">Лекции</label>
+                        </div>
+
+                        <h6 class="card-header border-primary">Стоимость</h6>
+                        <div class="form-check ml-1">
+                            <input class="form-check-input" value="true" type="checkbox" name="free" id="freeTrue" @Model.Free.GetCheckedString(true)>
+                            <label class="form-check-label" for="freeTrue">Бесплатный</label>
+                        </div>
+                        <div class="form-check ml-1">
+                            <input class="form-check-input" value="false" type="checkbox" name="free" id="freeFalse" @Model.Free.GetCheckedString(false)>
+                            <label class="form-check-label" for="freeFalse">Платный</label>
+                        </div>
+
+                        <h6 class="card-header border-primary">Длительность(ч.)</h6>
+                        <div class="input-group mb-1 ml-1 pr-1">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">От</span>
+                            </div>
+                            <input type="number" class="form-control" name="min" value="@Model.MinDuration">
+                        </div>
+                        <div class="input-group mb-1 ml-1 pr-1">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">До</span>
+                            </div>
+                            <input type="number" class="form-control" name="max" value="@Model.MaxDuration">
+                        </div>
+
+                        <div class="col-12 pl-1 pr-1 pb-1">
+                            <button type="submit" class="btn btn-warning" style="width: 100%;">Найти (@Model.Selected.Length)</button>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="col-6 pl-0">
+                    <h6 class="card-header border-primary" id="competencesHeader">Компетенции</h6>
+                    <div class="overflow-auto ml-1" id="competences">
+                        @foreach (var competence in HomeController.Competences)
+                        {
+                            <div class="form-check">
+                                <input class="form-check-input" value="@competence" type="checkbox" name="competences" id="@competence" @Model.Competences.GetCheckedString(competence)>
+                                <label class="form-check-label" for="@competence">@competence</label>
+                            </div>
+                        }
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </form>
+
+    <div class="col-6 pr-0">
+        <div class="card border-primary p-1">
+            @foreach (var course in Model.Selected)
+            {
+                <a asp-controller="Home" asp-action="Course" asp-route-name="@course.Name">@course.Name</a>
+            }
+        </div>
+    </div>
 
 </div>
+
+<script type="text/javascript">
+function reSize() {
+    const new_height = document.getElementById('filter').offsetHeight - document.getElementById('competencesHeader').offsetHeight
+    document.getElementById('competences').style.maxHeight = new_height + 'px';
+}
+reSize();
+</script>

@@ -31,14 +31,12 @@
                     <div class="card-header text-primary">
                         Желаемые компетенции
                     </div>
-                    <ul class="list-group list-group-flush" style="text-align:center;">
+                    <div class="row m-0 pl-1 pt-1">
                         @foreach (var c in Model.DesiredCompetences)
                         {
-                            <li class="list-group-item bg-primary">
-                                <span class="badge badge-warning" style="white-space: normal">@c</span>
-                            </li>
+                            <div class="col mr-1 mb-1 badge badge-warning" style="white-space: normal">@c</div>
                         }
-                    </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -48,7 +46,6 @@
                 Редактировать
             </a>
         </div>
-        
         
         <h4 class="row">Мои курсы</h4>
                 
@@ -61,16 +58,14 @@
                             @course
                         </div>
                         
-                        <ul class="list-group list-group-flush" style="text-align:center;">
-                            @foreach (var competence in HomeController.Courses[course].Competences)
+                        <div class="row m-0 pl-1 pt-1">
+                            @foreach (var c in HomeController.Courses[course].Competences)
                             {
-                                <li class="list-group-item bg-primary">
-                                    <span class="badge badge-warning" style="white-space: normal">@competence</span>
-                                </li>
+                                <div class="col mr-1 mb-1 badge badge-warning" style="white-space: normal">@c</div>
                             }
-                        </ul>
+                        </div>
 
-                        <a class="btn btn-warning" asp-controller="Home" asp-action="Course" asp-route-name="@course">
+                        <a class="btn btn-warning mr-1 ml-1 mb-1" asp-controller="Home" asp-action="Course" asp-route-name="@course">
                             Подробнее
                         </a>
                     </div>
